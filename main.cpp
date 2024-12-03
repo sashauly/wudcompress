@@ -14,11 +14,11 @@
 
 		[SectorIndexTable]
 		UINT32[]	lookupIndex			table of indices for lookup of each sector. To calculate number of entries in this array: sectorCount = (uncompressedSize+sectorSize-1)/sectorSize
-		
+
 		[SectorData]
 		UINT8[]		padding				Padding until the next field (sectorData) is aligned to sectorSize bytes. You can write whatever data you want here
 		UINT8[]		sectorData			Array of unique sectors. Size in bytes: sectorSize * sectorCount
-		
+
  */
 
 
@@ -76,11 +76,11 @@ bool validateWUX(char* wud1Path, char* wud2Path)
 	// compare data
 	long long currentValidationOffset = 0;
 	unsigned int tempBufferSize = 1024*1024+19; // 1MB + some extra bytes to make the number uneven (we want to provoke cross-sector reads)
-	unsigned char* tempBufferWUD1 = (unsigned char*)malloc(tempBufferSize); 
-	unsigned char* tempBufferWUD2 = (unsigned char*)malloc(tempBufferSize); 
+	unsigned char* tempBufferWUD1 = (unsigned char*)malloc(tempBufferSize);
+	unsigned char* tempBufferWUD2 = (unsigned char*)malloc(tempBufferSize);
 	bool dataMismatch = false;
 	int pct = -1;
-	printf("0%\r");
+	printf("0%%\r");
 	while( currentValidationOffset < wud1Size )
 	{
 		// calculate how many bytes we are reading in this cycle
@@ -107,7 +107,7 @@ bool validateWUX(char* wud1Path, char* wud2Path)
 		currentValidationOffset += bytesToRead;
 		// display current progress
 		int newPct = (int)(currentValidationOffset*1000LL / wud1Size);
-		if( newPct != pct )	
+		if( newPct != pct )
 		{
 			printf("%d.%d%%   \r", (newPct/10), (newPct%10));
 			pct = newPct;
@@ -275,7 +275,7 @@ int main(int argc, char *argv[])
 	// create path of output file by replacing the extension with .wux
 	char* outputPath = (char*)malloc(strlen(wudPath)+4+1); // allocate space for up to 4 extra characters in case we need to add the .wux extension
 	strcpy(outputPath, wudPath);
-	// replace with opposite extension (wux <-> wud) 
+	// replace with opposite extension (wux <-> wud)
 	char* newExtension;
 	if( wud_isWUXCompressed(wud) )
 	{
