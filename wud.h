@@ -2,10 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-#ifndef _WIN32
-#define _fseeki64 fseeko
-#define _ftelli64 ftello
-#define stricmp strcasecmp
+#ifdef _WIN32
+#define fseeko _fseeki64
+#define ftello _ftelli64
+#define strcasecmp stricmp
+#define fopen fopen_s
 #endif
 
 typedef struct
