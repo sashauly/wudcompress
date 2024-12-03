@@ -1,4 +1,14 @@
-typedef struct 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#ifndef _WIN32
+#define _fseeki64 fseeko
+#define _ftelli64 ftello
+#define stricmp strcasecmp
+#endif
+
+typedef struct
 {
 	unsigned int		magic0;
 	unsigned int		magic1;
@@ -7,7 +17,7 @@ typedef struct
 	unsigned int		flags;
 }wuxHeader_t;
 
-typedef struct  
+typedef struct
 {
 	FILE*			fileWud;
 	long long		uncompressedSize;
