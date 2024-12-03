@@ -280,12 +280,20 @@ int main(int argc, char *argv[])
 	if( wud_isWUXCompressed(wud) )
 	{
 		printf("Mode: Decompress\n");
-		newExtension = (char*)".wud";
+		#ifdef _WIN32
+			newExtension = ".wud";
+		#else
+			newExtension = (char*)".wud";
+		#endif
 	}
 	else
 	{
 		printf("Mode: Compress\n");
-		newExtension = (char*)".wux";
+		#ifdef _WIN32
+			newExtension = ".wux";
+		#else
+			newExtension = (char*)".wux";
+		#endif
 	}
 	bool extensionFound = false;
 	for(int i=strlen(outputPath)-1; i>=0; i--)
