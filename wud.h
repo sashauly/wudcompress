@@ -6,7 +6,6 @@
 #define fseeko _fseeki64
 #define ftello _ftelli64
 #define strcasecmp stricmp
-#define fopen fopen_s
 #endif
 
 typedef struct
