@@ -1,7 +1,5 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include"wud.h"
+#include "wud.h"
+
 
 long long wud_getFileSize64(FILE* file)
 {
